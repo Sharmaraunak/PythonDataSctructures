@@ -108,7 +108,9 @@ class Linked_list(object):
 
         else:
             if(position == 1):
-                current = new_element
+                new_element.next = self.head
+                self.head = new_element
+
             else:
                 return "List Empty !!! Position not available"
 
@@ -168,37 +170,62 @@ class Linked_list(object):
 
         return linked_list
 
+    def insert_first(self, new_element):
+        """inserts a element to start to the list
 
-# Test cases
-# Set up some Elements
-e1 = Element(1)
-e2 = Element(2)
-e3 = Element(3)
-e4 = Element(4)
+        Args:
+            new_element ([element]): [A new element with value and next as none to be added in list ])
 
-# Start setting up a LinkedList
-ll = Linked_list(e1)
-ll.append(e2)
-ll.append(e3)
+        Return: return None 
+        """
+        new_element._next = self.head
+        self.head = new_element
 
-# Test get_position
-# Should print 3
-print(ll.head._next._next.value)
-# Should also print 3
-print(ll.get_position(3).value)
+    def delete_first(self):
+        """deletes the first element in the linked list and return it
 
-# Test insert
-ll.insert(e4, 3)
-# Should print 4 now
-print(ll.get_position(3).value)
+        Return : returns the first element 
+        """
+        current = self.head
+        if current:
+            self.head = current._next
+            current._next = None
+            return current
+        else:
+            return "Nothing to delete"
 
-# Test delete
-ll.delete(1)
-# Should print 2 now
-print(ll.get_position(1).value)
-# Should print 4 now
-print(ll.get_position(2).value)
-# Should print 3 now
-print(ll.get_position(3).value)
-print(ll.get_position(3).value)
-print(ll.print_list())
+
+def Linked_list_Test():
+    # Test cases
+    # Set up some Elements
+    e1 = Element(1)
+    e2 = Element(2)
+    e3 = Element(3)
+    e4 = Element(4)
+
+    # Start setting up a LinkedList
+    ll = Linked_list(e1)
+    ll.append(e2)
+    ll.append(e3)
+
+    # Test get_position
+    # Should print 3
+    print(ll.head._next._next.value)
+    # Should also print 3
+    print(ll.get_position(3).value)
+
+    # Test insert
+    ll.insert(e4, 3)
+    # Should print 4 now
+    print(ll.get_position(3).value)
+
+    # Test delete
+    ll.delete(1)
+    # Should print 2 now
+    print(ll.get_position(1).value)
+    # Should print 4 now
+    print(ll.get_position(2).value)
+    # Should print 3 now
+    print(ll.get_position(3).value)
+    print(ll.get_position(3).value)
+    print(ll.print_list())
