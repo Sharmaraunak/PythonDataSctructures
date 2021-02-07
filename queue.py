@@ -49,18 +49,21 @@ few lines as possible.
 Make sure you pass the test cases too!"""
 
 
+
+
+from collections import deque
 class Queue:
     def __init__(self, head=None):
-        self.storage = [head]
+        self.storage = deque([head])
 
     def enqueue(self, new_element):
-        pass
+        self.storage.append(new_element)
 
     def peek(self):
-        pass
+        return self.storage[0]
 
     def dequeue(self):
-        pass
+        return self.storage.popleft()
 
 
 def dequeue_test():
@@ -88,3 +91,6 @@ def dequeue_test():
     q.enqueue(5)
     # Should be 5
     print(q.peek())
+
+
+dequeue_test()

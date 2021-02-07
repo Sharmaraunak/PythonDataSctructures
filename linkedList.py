@@ -194,6 +194,38 @@ class Linked_list(object):
         else:
             return "Nothing to delete"
 
+    def delete(self, position):
+        """deletes the element at given position if exists.
+            ***position is 1 based***
+
+        Args:
+            position (int): position to be deleted
+        """
+        current = self.head
+        if current:
+            prev = current
+            count = 1
+            found = False
+            while current:
+                if(position == count):
+                    found = True
+                    if(count == 1):
+                        self.head = current._next
+                        current._next = None
+                        return current
+                    else:
+                        if current._next:
+                            prev.next = current._next
+                        else:
+                            prev._next = None
+                else:
+                    prev = current
+                    current = current._next
+                    count += 1
+
+        else:
+            return "Nothing to delete"
+
 
 def Linked_list_Test():
     # Test cases
