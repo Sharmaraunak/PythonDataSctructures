@@ -93,10 +93,12 @@ class Linked_list(object):
                     found = True
                     new_element._next = current
                     prev._next = new_element
+                    break
 
                 else:
                     prev = current
                     current = current._next
+                    count += 1
 
             # inserting the element at last
             if(found == False and position == count+1):
@@ -127,7 +129,7 @@ class Linked_list(object):
                     if current._next:
                         if(count == 1):
                             self.head = current._next
-                            current.next = None
+                            current._next = None
                             break
                         else:
                             prev.next = current._next
@@ -144,6 +146,27 @@ class Linked_list(object):
 
         else:
             return "List is Empty!!! No values to delete"
+
+    def print_list(self):
+        """summary: prints a given list 
+
+            Return: a string based representation of list
+        """
+        linked_list = ""
+        # get a pointer to head
+        current = self.head
+        if current:
+            # traverse the list and concatenate to string
+            while current._next:
+                linked_list += str(current.value)
+                linked_list += "->"
+                current = current._next
+            linked_list += str(current.value)
+
+        else:
+            return "List is Empty"
+
+        return linked_list
 
 
 # Test cases
@@ -177,3 +200,5 @@ print(ll.get_position(1).value)
 print(ll.get_position(2).value)
 # Should print 3 now
 print(ll.get_position(3).value)
+print(ll.get_position(3).value)
+print(ll.print_list())
