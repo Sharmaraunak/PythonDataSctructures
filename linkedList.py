@@ -44,7 +44,7 @@ class Linked_list(object):
             # add the element at last
             current._next = new_element
         else:
-            current = new_element
+            self.head = new_element
 
     def get_position(self, position):
         """Get an element from a particular position.
@@ -226,38 +226,88 @@ class Linked_list(object):
         else:
             return "Nothing to delete"
 
+    def reverse(self):
+        """ Reverses the linked list 
+        """
+        current = self.head
+        reverse_head = self.head
+
+        rest_of_list = current._next
+
+        # check whether list is empty
+        if current:
+            # check whether list has only one element
+            if current._next:
+                reverse_head._next = None
+                # traverse through rest of list and add it reverse head one by one
+                while rest_of_list:
+                    # node to be added in reversed list
+                    to_be_reversed = rest_of_list
+                    # rest of list remaining to be reversed
+                    rest_of_list = rest_of_list._next
+
+                    # add the node to head of reversed list
+                    to_be_reversed._next = reverse_head
+                    reverse_head = to_be_reversed
+
+            self.head = reverse_head
+        else:
+            return "List is empty ! Nothing to reverse."
+
 
 def Linked_list_Test():
     # Test cases
     # Set up some Elements
-    e1 = Element(1)
-    e2 = Element(2)
-    e3 = Element(3)
-    e4 = Element(4)
+    a = [3,
+         5,
+         16,
+         12,
+         4,
+         2,
+         5,
+         3,
+         7,
+         3,
+         9,
+         5,
+         5,
+         1,
+         18,
+         3,
+         13]
+    ll = Linked_list()
+    for element in a:
+        e = Element(element)
+        ll.append(e)
 
     # Start setting up a LinkedList
-    ll = Linked_list(e1)
-    ll.append(e2)
-    ll.append(e3)
+
+    # ll.append(e2)
+    # ll.append(e3)
 
     # Test get_position
     # Should print 3
-    print(ll.head._next._next.value)
-    # Should also print 3
-    print(ll.get_position(3).value)
+    # print(ll.head._next._next.value)
+    # # Should also print 3
+    # print(ll.get_position(3).value)
 
     # Test insert
-    ll.insert(e4, 3)
+    # ll.insert(e4, 3)
     # Should print 4 now
-    print(ll.get_position(3).value)
+    # print(ll.get_position(3).value)
 
-    # Test delete
-    ll.delete(1)
-    # Should print 2 now
-    print(ll.get_position(1).value)
-    # Should print 4 now
-    print(ll.get_position(2).value)
-    # Should print 3 now
-    print(ll.get_position(3).value)
-    print(ll.get_position(3).value)
+    # # Test delete
+    # ll.delete(1)
+    # # Should print 2 now
+    # print(ll.get_position(1).value)
+    # # Should print 4 now
+    # print(ll.get_position(2).value)
+    # # Should print 3 now
+    # print(ll.get_position(3).value)
+    # print(ll.get_position(3).value)
     print(ll.print_list())
+    ll.reverse()
+    print(ll.print_list())
+
+
+Linked_list_Test()
